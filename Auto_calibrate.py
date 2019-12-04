@@ -6,16 +6,13 @@ Workflow
 0. Given the bam files
 1. Locate the template (reference)
 2. Define the bam file per iteration
+3. Use os.system(command) to execute rtg calibrate
 '''
 
 #libarary
 import os
 import pandas as pd
 import numpy as np
-from timeit import default_timer as timer
-
-#time the execution
-start = timer()
 
 def parsing_sample (file): #file should be .txt
     sdf_reads_directory = []
@@ -41,12 +38,9 @@ def parsing_sample (file): #file should be .txt
 #obtaining the parameter
 sdf_reads_directory, R1, R2 = parsing_sample('reads_list_trial.txt')
 
-#Mapping reads to reference genome
+#Calibrate the bam file
 for sample in sdf_reads_directory :
     bam = 'Map/Map_{}'.format(sample)
     #the template is in folder [reference_ver01_SDF]
     calibrate = 'rtg calibrate --template reference_ver01_SDF {}/alignments.bam'.format(bam)
     os.system(calibrate)
-    
-end = timer()
-print('running time : ', end-start)

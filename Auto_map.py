@@ -8,6 +8,7 @@ Workflow
 1. Obtain the folder name per sample
 2. Create output folder per mapping
 3. Define the sam format per sample
+4. Use os.system(command) to execute rtg map
 '''
 
 #libarary

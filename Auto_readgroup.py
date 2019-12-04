@@ -1,3 +1,14 @@
+'''
+A script to automate formating fastq reads files to rtg's SDF
+design by.https://github.com/SausanCantik
+
+Workflow
+0. Given the reads in RAW folder. The pairends reads are consist of two bz2 files.
+1. List the file names and store as a variable.
+2. Create a function to automatecally generate the read group per sample
+'''
+
+#library
 import os
 
 # a function to create folder name, R1, R2 of the reads

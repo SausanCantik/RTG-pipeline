@@ -7,19 +7,16 @@ Workflow
 0. Given the reads in RAW folder. The pairends reads are consist of two bz2 files.
 1. List the file names and store as a variable.
 2. Parse the R1 (identify from behind) and store as a variable
-3. Parse the R1 (identify from behind) and store as a variable
-4. Parse the accession code and store as a variable
+3. Parse the R2 (identify from behind) and store as a variable
+4. Use os.system(command) to execute rtg format
 '''
 
 #libarary
 import os
 import pandas as pd
 import numpy as np
-from timeit import default_timer as timer
 
-start = timer()
 #Function to create the folder name, R1, R2 of reads
-
 def parsing_sample (file): #file should be .txt
     sdf_reads_directory = []
     R1 = []
@@ -38,7 +35,7 @@ def parsing_sample (file): #file should be .txt
     #create a file containing the sample data
     df = pd.DataFrame(zip(sdf_reads_directory,R1,R2), columns = ['Folder', 'R1', 'R2'])
     result = df.to_excel('Sample_data.xlsx')
-    print ('You now have an output file called: {}'.format(result)) 
+    print ('You now have an output file called: Sample_data.xlsx') 
     return sdf_reads_directory, R1, R2
 
 #obtaining the parameter
@@ -52,5 +49,3 @@ for i in range(len(R1)) :
     fastq_to_sdf = 'rtg format -f fastq -q sanger -o {} -l {} -r {}'.format(output, left, right)
     os.system(fastq_to_sdf)
     
-end = timer ()
-print('running time : ', end-start)

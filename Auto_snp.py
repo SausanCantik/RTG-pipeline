@@ -8,17 +8,15 @@ Workflow
 1. Locate the template (reference)
 2. Create output folder per sample
 3. Define the bam file per iteration
+4. Use os.system(command) to execute rtg snp
 '''
 
 #libarary
 import os
 import pandas as pd
 import numpy as np
-from timeit import default_timer as timer
 
-#time the execution
-start = timer()
-
+#Function to create the folder name, R1, R2 of reads
 def parsing_sample (file): #file should be .txt
     sdf_reads_directory = []
     R1 = []
@@ -37,7 +35,7 @@ def parsing_sample (file): #file should be .txt
     #create a file containing the sample data
     df = pd.DataFrame(zip(sdf_reads_directory,R1,R2), columns = ['Folder', 'R1', 'R2'])
     result = df.to_excel('Sample_data.xlsx')
-    print ('You now have an output file called: {}'.format(result)) 
+    print ('You now have an output file called: Sample_data.xlsx') 
     return sdf_reads_directory, R1, R2
 
 #obtaining the parameter
@@ -50,5 +48,3 @@ for sample in sdf_reads_directory :
     vcf = 'rtg snp --bed-regions targets.bed --template reference_ver01_SDF --output {} {}/alignments.bam'.format(output, bam)
     os.system(vcf)
     
-end = timer()
-print('running time : ', end-start)

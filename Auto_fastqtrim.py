@@ -6,10 +6,7 @@ design by.https://github.com/SausanCantik
 Workflow
 0. Given the reads in RAW folder. The pairends reads are consist of two bz2 files.
 1. List the file names and store as a variable.
-2. Parse the R1 (identify from behind) and store as a variable
-3. Parse the R1 (identify from behind) and store as a variable
-4. Parse the accession code and store as a variable
-5. Use os.system(command) to automate the process
+2. Use os.system(command) to execute rtg fastqtrim
 '''
 
 #libarary
@@ -36,7 +33,7 @@ def parsing_fastq (file): #file should be .txt
 #obtaining the parameter
 reads = parsing_fastq('list.txt')
 
-#convert pair ends fastq tp SDF
+#trim the reads
 for read in reads:
     #R = 'C:\\Users\\Biotech\\Documents\\Sausan\\NGS\\RAW\\{}'.format(read)
     R = 'F:\\Master Program\\Third Year\\INF70424-Internship\\RTG\\RAW\\{}'.format(read)
